@@ -112,3 +112,36 @@ exports.update = async (req, res) => {
     });
   }
 };
+//delete task
+exports.delete = async (req, res) => {
+  try {
+    let task_id = req.params.id;
+    await Tasks.findByIdAndDelete(task_id)
+      .then((deleteDoc) => {
+        if (deleteDoc) {
+          return res.status(200).json({
+            status: true,
+            message: "Successfully deleted",
+          });
+        } else {
+          return res.status(404).json({
+            status: false,
+            message: "Task not found",
+          });
+        }
+      })
+      .catch((err) => {
+        console.log("delete task error", err);
+        return res.status(400).json({
+          status: false,
+          message: "Task deletion failed",
+        });
+      });
+  } catch (err) {
+    console.log("delete task error", err);
+    return res.status(400).json({
+      status: false,
+      message: "Sorry, something went wrong",
+    });
+  }
+};
