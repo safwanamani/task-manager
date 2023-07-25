@@ -9,7 +9,10 @@ const routes = require("./src/routes")
 const app = express()
 
 //database connection
-mongoose.connect(MONGO_URL).then(() => {
+mongoose.connect(MONGO_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+}).then(() => {
     console.log("Database connected")
 }).catch(err => {
     console.log("Database error", err)
