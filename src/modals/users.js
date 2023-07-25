@@ -1,10 +1,10 @@
+require("dotenv").config();
 const mongoose = require('mongoose')
 const CryptoJs = require("crypto-js")
-const config = require("../../config.json")
 const Schema = mongoose.Schema
-let nonce = config.HASH_PASSWORD_NONCE
-let message = config.HASH_PASSWORD_MESSAGE
-let path = config.HASH_PASSWORD_PATH
+let nonce = process.env.HASH_PASSWORD_NONCE
+let message = process.env.HASH_PASSWORD_MESSAGE
+let path = process.env.HASH_PASSWORD_PATH
 
 let userSchema = new Schema({
     name: {

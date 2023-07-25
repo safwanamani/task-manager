@@ -1,8 +1,8 @@
+require("dotenv").config();
 const mongoose = require("mongoose");
 const Users = mongoose.model("users");
 const JWT = require("jsonwebtoken");
-const config = require("../../config.json");
-const accessTokenSecret = config.JWT_TOKEN_SECRET;
+const accessTokenSecret = process.env.JWT_TOKEN_SECRET;
 const { validateUserRegisterInputs, validateLoginInputs } = require("../Validators/userValidators");
 
 //check email exists

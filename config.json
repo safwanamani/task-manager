@@ -1,8 +1,0 @@
-{
-    "PORT": 2000,
-    "MONGO_URI": "mongodb://127.0.0.1:27017/task_manager",
-    "HASH_PASSWORD_NONCE": "tasknonce",
-    "HASH_PASSWORD_MESSAGE": "taskmessage",
-    "HASH_PASSWORD_PATH": "taskpath",
-    "JWT_TOKEN_SECRET": "tasksecret"
-}
