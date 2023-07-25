@@ -7,5 +7,6 @@ router.post("/", isAuthJWT, taskController.create)
 router.get("/", isAuthJWT, taskController.list)
 router.put("/", isAuthJWT, taskController.update)
 router.delete("/:id", isAuthJWT, taskController.delete)
+router.post("/list", isAuthJWT, taskController.filter)
 
 module.exports = router

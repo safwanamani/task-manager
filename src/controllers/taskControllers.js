@@ -145,3 +145,37 @@ exports.delete = async (req, res) => {
     });
   }
 };
+//filter
+exports.filter = async (req, res) => {
+  try {
+    let { status } = req.body;
+    let queries = [
+      {
+        $match: { created_by: new mongoose.Types.ObjectId(req.user._id) },
+      },
+    ];
+    if (status) {
+      queries.push({
+        $match: { status: status },
+      });
+    }
+    let tasks = await Tasks.aggregate([...queries]);
+    if (tasks.length > 0) {
+      return res.status(200).json({
+        status: true,
+        data: tasks,
+      });
+    } else {
+      return res.status(204).json({
+        status: false,
+        message: "No tasks found",
+      });
+    }
+  } catch (err) {
+    console.log("filter error", err);
+    return res.status(400).json({
+      status: false,
+      message: "Sorry, something went wrong",
+    });
+  }
+};
