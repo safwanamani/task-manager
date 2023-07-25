@@ -34,3 +34,24 @@ exports.validateUserRegisterInputs = (data) => {
         isValid: isEmpty(errors)
     }
 }
+//validate user login inputs
+exports.validateLoginInputs = (data) => {
+    let errors = []
+    if (typeof data.email === "undefined") data.email = ""
+    if (typeof data.password === "undefined") data.password = ""
+
+    if (Validator.isEmpty(data.email)) {
+        errors.push("Email is required")
+    }
+    if (!Validator.isEmail(data.email)) {
+        errors.push("Please enter a valid email")
+    }
+    if (Validator.isEmpty(data.password)) {
+        errors.push("Password is required")
+    }
+
+    return {
+        errors,
+        isValid: isEmpty(errors)
+    }
+}
