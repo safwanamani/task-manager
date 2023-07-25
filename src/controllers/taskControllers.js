@@ -38,3 +38,27 @@ exports.create = async (req, res) => {
         })
     }
 }
+// get tasks by user
+exports.list = async (req, res) => {
+    try {
+        let user_id = req.user._id
+        let tasks = await Tasks.find({created_by: user_id})
+        if (tasks) {
+            return res.status(200).json({
+                status: true,
+                data: tasks
+            })
+        } else {
+            return res.status(204).json({
+                status: false,
+                message: "No tasks found"
+            })
+        }
+    } catch (err) {
+        console.log("get tasks error", err)
+        return res.status(400).json({
+            status: false,
+            message: "Sorry, something went wrong"
+        })
+    }
+}
